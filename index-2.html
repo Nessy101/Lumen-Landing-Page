@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumen Protocol — Reuniting STEAM. Bridging Startups & Social Sciences.</title>
+  <meta name="description" content="An equalizer platform connecting Sociology and Digital Humanities majors with forward-thinking startups to build nuanced, equitable technology. Join the beta waitlist." />
+  <meta name="theme-color" content="#050505" />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lumen Protocol — Tech Without Humanity Is Just Code" />
+  <meta property="og:description" content="Where critical minds from the humanities meet startups to build nuanced, equitable technology." />
+  <meta property="og:image" content="logo.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ec4899'/%3E%3Cstop offset='1' stop-color='%233b82f6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='48' fill='url(%23g)'/%3E%3Ctext x='50' y='67' font-size='54' font-family='Arial' font-weight='900' text-anchor='middle' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Space Grotesk', 'Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body { background: #050505; }
+    ::selection { background: rgba(236, 72, 153, 0.35); }
+
+    .grain::before {
+      content: "";
+      position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .grad-text {
+      background-image: linear-gradient(90deg, #ec4899, #a855f7, #3b82f6, #ec4899);
+      background-size: 250% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: shimmer 8s linear infinite;
+    }
+    @keyframes shimmer { to { background-position: 250% 0; } }
+
+    .float-a { animation: float 14s ease-in-out infinite; }
+    .float-b { animation: float 18s ease-in-out infinite reverse; }
+    @keyframes float {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(30px, -40px, 0) scale(1.08); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
+
+    .marquee { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+    .marquee:hover { animation-play-state: paused; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    .card-glow { position: relative; }
+    .card-glow::after {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.07), transparent 40%);
+      opacity: 0; transition: opacity .3s;
+    }
+    .card-glow:hover::after { opacity: 1; }
+
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .chev { transform: rotate(45deg); }
+
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px #000 inset; -webkit-text-fill-color: #fff;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body class="grain font-sans text-slate-50 antialiased overflow-x-hidden">
+
+  <!-- Ambient background -->
+  <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="float-a absolute -top-1/4 -left-[10%] w-[55%] h-[55%] rounded-full bg-pink-700/15 blur-[160px]"></div>
+    <div class="float-b absolute -bottom-[10%] -right-[10%] w-[45%] h-[45%] rounded-full bg-blue-700/15 blur-[160px]"></div>
+    <div class="float-a absolute top-[40%] left-1/2 -translate-x-1/2 w-[30%] h-[30%] rounded-full bg-purple-700/15 blur-[160px]"></div>
+  </div>
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded-lg">Skip to content</a>
+
+  <!-- Navigation -->
+  <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 py-4" aria-label="Primary">
+      <a href="#top" class="flex items-center gap-3 group">
+        <span class="relative w-11 h-11 rounded-full overflow-hidden grid place-items-center bg-gradient-to-br from-pink-500 to-blue-500 font-display font-bold text-lg shadow-[0_0_20px_rgba(236,72,153,0.45)] ring-1 ring-pink-400/40">
+          L
+          <img src="logo.jpg" alt="Lumen Protocol logo" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()" />
+        </span>
+        <span class="font-display text-lg sm:text-xl font-bold tracking-[0.2em] uppercase grad-text">Lumen Protocol</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <a href="#mission" class="hover:text-white transition-colors">Mission</a>
+        <a href="#exchange" class="hover:text-white transition-colors">The Exchange</a>
+        <a href="#how" class="hover:text-white transition-colors">How it works</a>
+        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+      </div>
+
+      <a href="#join" class="px-5 sm:px-6 py-2.5 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-pink-500/50 hover:shadow-[0_0_24px_-6px_rgba(236,72,153,0.5)] transition-all duration-300">
+        Join Waitlist
+      </a>
+    </nav>
+  </header>
+
+  <main id="main" class="relative z-10">
+
+    <!-- HERO -->
+    <section id="top" class="pt-40 sm:pt-48 pb-24 px-6 text-center max-w-5xl mx-auto flex flex-col items-center">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/25 text-purple-300 text-[11px] sm:text-xs font-bold uppercase tracking-widest mb-8">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-pink-500 opacity-75 animate-ping"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-pink-500"></span>
+        </span>
+        Now accepting beta testers
+      </div>
+
+      <h1 class="reveal d1 font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.05] mb-8">
+        Reuniting <span class="grad-text">STEAM.</span><br />
+        Bridging <span class="grad-text">Startups</span><br class="hidden sm:block" />
+        <span class="text-slate-100">&amp; Social Sciences.</span>
+      </h1>
+
+      <p class="reveal d2 text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+        We are building an equalizer platform, where the critical minds of B.A. Sociology and Digital Humanities majors meet forward-thinking startups to build nuanced, equitable technology.
+      </p>
+
+      <div class="reveal d3 flex flex-col sm:flex-row items-center gap-4">
+        <a href="#join" class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 text-white rounded-full text-base sm:text-lg font-bold uppercase tracking-wider transition-all duration-300 shadow-[0_0_40px_-10px_rgba(219,39,119,0.55)] hover:shadow-[0_0_64px_-8px_rgba(219,39,119,0.75)] hover:scale-[1.03]">
+          Shape the Future
+          <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+        <a href="#mission" class="px-8 py-4 rounded-full border border-white/10 hover:border-white/30 text-slate-300 hover:text-white text-sm font-bold uppercase tracking-wider transition-all">
+          Read our story
+        </a>
+      </div>
+
+      <a href="#mission" aria-label="Scroll to mission" class="mt-20 opacity-50 hover:opacity-100 transition-opacity animate-bounce">
+        <i data-lucide="arrow-down" class="w-7 h-7"></i>
+      </a>
+    </section>
+
+    <!-- DISCIPLINES MARQUEE -->
+    <section class="py-8 border-y border-white/5 bg-white/[0.015] overflow-hidden" aria-label="Disciplines we connect">
+      <div class="marquee">
+        <div class="flex shrink-0 items-center gap-12 pr-12 text-sm font-bold uppercase tracking-[0.25em] text-slate-500">
+          <span>Sociology</span><span class="text-pink-500">✦</span>
+          <span>Digital Humanities</span><span class="text-purple-500">✦</span>
+          <span>Ethics</span><span class="text-blue-500">✦</span>
+          <span>Anthropology</span><span class="text-pink-500">✦</span>
+          <span>Public Policy</span><span class="text-purple-500">✦</span>
+          <span>Arts &amp; Design</span><span class="text-blue-500">✦</span>
+          <span>Engineering</span><span class="text-pink-500">✦</span>
+          <span>Product</span><span class="text-purple-500">✦</span>
+        </div>
+        <div class="flex shrink-0 items-center gap-12 pr-12 text-sm font-bold uppercase tracking-[0.25em] text-slate-500" aria-hidden="true">
+          <span>Sociology</span><span class="text-pink-500">✦</span>
+          <span>Digital Humanities</span><span class="text-purple-500">✦</span>
+          <span>Ethics</span><span class="text-blue-500">✦</span>
+          <span>Anthropology</span><span class="text-pink-500">✦</span>
+          <span>Public Policy</span><span class="text-purple-500">✦</span>
+          <span>Arts &amp; Design</span><span class="text-blue-500">✦</span>
+          <span>Engineering</span><span class="text-pink-500">✦</span>
+          <span>Product</span><span class="text-purple-500">✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION / FOUNDER LETTER -->
+    <section id="mission" class="py-28 px-6">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+        <div class="order-2 lg:order-1 relative reveal">
+          <div class="absolute inset-0 bg-gradient-to-tr from-pink-500/25 to-blue-500/25 blur-3xl rounded-full" aria-hidden="true"></div>
+          <figure class="relative p-[1px] bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500 rounded-3xl">
+            <div class="bg-[#0a0a0a] p-8 md:p-12 rounded-[23px]">
+              <i data-lucide="sparkles" class="w-8 h-8 text-pink-500 mb-6"></i>
+              <blockquote>
+                <p class="font-display text-2xl md:text-3xl font-bold mb-6 leading-snug">
+                  “If DoorDash gave up after its first mistake, it wouldn’t exist.”
+                </p>
+                <p class="text-slate-400 mb-5 leading-relaxed">
+                  I built Lumen out of the hope that one day STEAM could be reunited. Working in startups, I saw a disturbing trend: the attempt to create something useful was overshadowed by a lack of nuance and a trap of contempt.
+                </p>
+                <p class="text-slate-400 mb-8 leading-relaxed">
+                  Tech doesn’t just need flawless code. It needs empathy, sociological context, and resilience. I wanted to create an equalizer platform, a space where people overlooked for the color of their skin or their unconventional backgrounds can make real progress for society.
+                </p>
+              </blockquote>
+              <figcaption class="flex items-center gap-4 pt-6 border-t border-white/10">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-blue-500 grid place-items-center font-display font-bold text-xl">N</div>
+                <div>
+                  <p class="font-bold text-white">Nastayo Khalid</p>
+                  <p class="text-sm text-pink-400">Founder · B.A. Sociology, Digital Humanities</p>
+                </div>
+              </figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <div class="order-1 lg:order-2 reveal d1">
+          <p class="text-xs font-bold uppercase tracking-[0.3em] text-pink-400 mb-4">Our mission</p>
+          <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">
+            Tech without <span class="grad-text">humanity</span> is just code.
+          </h2>
+          <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed">
+            Living in today’s society is tiring. We still fight over resources, face class divides, and navigate systems designed to be difficult. But what if today changes?
+          </p>
+          <ul class="space-y-6">
+            <li class="flex gap-4">
+              <div class="shrink-0 w-12 h-12 rounded-xl bg-pink-500/10 grid place-items-center border border-pink-500/20">
+                <i data-lucide="globe" class="w-6 h-6 text-pink-500"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Dynamic perspectives</h3>
+                <p class="text-slate-400">We bring diverse, human-centric frameworks to solve reality’s most complex equations.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-500/10 grid place-items-center border border-purple-500/20">
+                <i data-lucide="users" class="w-6 h-6 text-purple-500"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Inclusive collaboration</h3>
+                <p class="text-slate-400">Escape the toxic dynamics of expensive, homogenous hiring and foster genuine, nuanced dialogue.</p>
+              </div>
+            </li>
+            <li class="flex gap-4">
+              <div class="shrink-0 w-12 h-12 rounded-xl bg-blue-500/10 grid place-items-center border border-blue-500/20">
+                <i data-lucide="code" class="w-6 h-6 text-blue-500"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Resilient builders</h3>
+                <p class="text-slate-400">Mistakes are part of building. We pair context with craft so teams keep going and get it right.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE EXCHANGE -->
+    <section id="exchange" class="py-28 px-6 border-y border-white/5 bg-white/[0.012]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <p class="text-xs font-bold uppercase tracking-[0.3em] text-purple-400 mb-4">Two sides, one bridge</p>
+          <h2 class="font-display text-4xl md:text-5xl font-bold">The Lumen Exchange</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Humanities -->
+          <article class="card-glow reveal group p-8 sm:p-10 rounded-[2rem] bg-gradient-to-b from-pink-500/[0.07] to-transparent border border-pink-500/20 hover:border-pink-500/50 transition-colors relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity" aria-hidden="true">
+              <i data-lucide="book-open" class="w-32 h-32 text-pink-500"></i>
+            </div>
+            <div class="relative z-10">
+              <div class="w-16 h-16 rounded-2xl bg-pink-500/20 grid place-items-center mb-8 border border-pink-500/30">
+                <i data-lucide="book-open" class="w-8 h-8 text-pink-400"></i>
+              </div>
+              <h3 class="font-display text-3xl font-bold mb-2">For Humanities Majors</h3>
+              <p class="text-pink-300/80 text-sm font-bold uppercase tracking-widest mb-6">Sociology · Digital Humanities · Arts</p>
+              <p class="text-slate-400 leading-relaxed mb-8">
+                Your ability to dissect complex social structures, analyze data through a human lens, and communicate nuance is your superpower. Gain real-world tech experience, work alongside researchers, and help build tools that actually serve people.
+              </p>
+              <ul class="space-y-3 text-slate-200 font-medium">
+                <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-pink-500 shrink-0"></i> Fellowships &amp; internships</li>
+                <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-pink-500 shrink-0"></i> Zero coding required</li>
+                <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-pink-500 shrink-0"></i> Shape product ethics</li>
+                <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-pink-500 shrink-0"></i> Equitable contracts that cover living expenses</li>
+                <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-pink-500 shrink-0"></i> Rate startups confidentially</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Startups -->
+          <article class="card-glow reveal d1 group p-8 sm:p-10 rounded-[2rem] bg-gradient-to-b from-blue-500/[0.07] to-transparent border border-blue-500/20 hover:border-blue-500/50 transition-colors relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity" aria-hidden="true">
+              <i data-lucide="rocket" class="w-32 h-32 text-blue-500"></i>
+            </div>
+            <div class="relative z-10">
+              <div class="w-16 h-16 rounded-2xl bg-blue-500/20 grid place-items-center mb-8 border border-blue-500/30">
+                <i data-lucide="rocket" class="w-8 h-8 text-blue-400"></i>
+              </div>
+              <h3 class="font-display text-3xl font-bold mb-2">For Tech Startups</h3>
+              <p class="text-blue-300/80 text-sm font-bold uppercase tracking-widest mb-6">Founders · Developers · PMs</p>
+              <p class="text-slate-400 leading-relaxed mb-8">
+                Engineering solves the “how.” Without understanding the “why,” products fail to connect with real people. Tap into a talent pool that understands behavior, ethics, and communication, and refine your product before you scale.
+              </p>
+              <ul class="space-y-3 text-slate-200 font-medium">
+                <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 shrink-0"></i> Diverse perspective feedback</li>
+                <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 shrink-0"></i> Personal, human vetting of every match</li>
+                <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 shrink-0"></i> Avoid cultural blind spots</li>
+                <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 shrink-0"></i> On-demand mentorship from economists, statisticians &amp; more</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="py-28 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <p class="text-xs font-bold uppercase tracking-[0.3em] text-blue-400 mb-4">Simple by design</p>
+          <h2 class="font-display text-4xl md:text-5xl font-bold">How it works</h2>
+        </div>
+
+        <ol class="grid md:grid-cols-3 gap-6">
+          <li class="reveal p-8 rounded-3xl bg-white/[0.03] border border-white/10">
+            <span class="font-display text-5xl font-bold grad-text">01</span>
+            <h3 class="text-xl font-bold mt-4 mb-2">Join the test group</h3>
+            <p class="text-slate-400 leading-relaxed">Tell us who you are, what you want to build, and what you are looking for.</p>
+          </li>
+          <li class="reveal d1 p-8 rounded-3xl bg-white/[0.03] border border-white/10">
+            <span class="font-display text-5xl font-bold grad-text">02</span>
+            <h3 class="text-xl font-bold mt-4 mb-2">Personal vetting</h3>
+            <p class="text-slate-400 leading-relaxed">A real person vets both sides and makes the introduction, so you can feel confident in the match.</p>
+          </li>
+          <li class="reveal d2 p-8 rounded-3xl bg-white/[0.03] border border-white/10">
+            <span class="font-display text-5xl font-bold grad-text">03</span>
+            <h3 class="text-xl font-bold mt-4 mb-2">Trial, then contract</h3>
+            <p class="text-slate-400 leading-relaxed">Start with a trial period. If it fits, move to an equitable temporary contract. Ratings stay confidential on both sides.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-6 border-t border-white/5">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="reveal font-display text-4xl font-bold text-center mb-12">Questions</h2>
+        <div class="space-y-3 reveal d1">
+          <details class="group rounded-2xl bg-white/[0.03] border border-white/10 open:border-pink-500/30 transition-colors">
+            <summary class="cursor-pointer flex items-center justify-between gap-4 p-6 font-bold text-lg">
+              Do I need technical skills to join as a humanities major?
+              <span class="chev shrink-0 text-2xl text-pink-400 transition-transform duration-300">+</span>
+            </summary>
+            <p class="px-6 pb-6 text-slate-400 leading-relaxed">No. Zero coding is required. Your value is the context, critical thinking, and communication you bring to product decisions.</p>
+          </details>
+          <details class="group rounded-2xl bg-white/[0.03] border border-white/10 open:border-pink-500/30 transition-colors">
+            <summary class="cursor-pointer flex items-center justify-between gap-4 p-6 font-bold text-lg">
+              What does the beta include?
+              <span class="chev shrink-0 text-2xl text-pink-400 transition-transform duration-300">+</span>
+            </summary>
+            <p class="px-6 pb-6 text-slate-400 leading-relaxed">Beta testers get early access to the platform and a direct line to shape how matching, fellowships, and collaboration work.</p>
+          </details>
+          <details class="group rounded-2xl bg-white/[0.03] border border-white/10 open:border-pink-500/30 transition-colors">
+            <summary class="cursor-pointer flex items-center justify-between gap-4 p-6 font-bold text-lg">
+              I run a startup. Why should I care?
+              <span class="chev shrink-0 text-2xl text-pink-400 transition-transform duration-300">+</span>
+            </summary>
+            <p class="px-6 pb-6 text-slate-400 leading-relaxed">Products built without sociological context tend to miss real users. Lumen gives you affordable, diverse perspective before you scale.</p>
+          </details>
+          <details class="group rounded-2xl bg-white/[0.03] border border-white/10 open:border-pink-500/30 transition-colors">
+            <summary class="cursor-pointer flex items-center justify-between gap-4 p-6 font-bold text-lg">
+              What happens to my information?
+              <span class="chev shrink-0 text-2xl text-pink-400 transition-transform duration-300">+</span>
+            </summary>
+            <p class="px-6 pb-6 text-slate-400 leading-relaxed">We only use your name and email to contact you about beta access. We won’t sell your data.</p>
+          </details>
+          <details class="group rounded-2xl bg-white/[0.03] border border-white/10 open:border-pink-500/30 transition-colors">
+            <summary class="cursor-pointer flex items-center justify-between gap-4 p-6 font-bold text-lg">
+              How does matching work?
+              <span class="chev shrink-0 text-2xl text-pink-400 transition-transform duration-300">+</span>
+            </summary>
+            <p class="px-6 pb-6 text-slate-400 leading-relaxed">Nobody should pay for the mistake of a bad hire. Every match is vetted personally, followed by a trial period and then an equitable temporary contract. Ratings from both sides are confidential, and we check in if something isn’t working.</p>
+          </details>
+          <details class="group rounded-2xl bg-white/[0.03] border border-white/10 open:border-pink-500/30 transition-colors">
+            <summary class="cursor-pointer flex items-center justify-between gap-4 p-6 font-bold text-lg">
+              Is Lumen only for the United States?
+              <span class="chev shrink-0 text-2xl text-pink-400 transition-transform duration-300">+</span>
+            </summary>
+            <p class="px-6 pb-6 text-slate-400 leading-relaxed">We are starting small, but the goal is to be open to everyone across borders, so you can pursue technology from wherever home is.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN FORM -->
+    <section id="join" class="py-32 px-6 relative">
+      <div class="absolute inset-0 bg-[url('logo.jpg')] bg-cover bg-center opacity-[0.04] blur-sm mix-blend-screen pointer-events-none" aria-hidden="true"></div>
+
+      <div class="max-w-xl mx-auto relative z-10">
+        <div class="text-center mb-10 reveal">
+          <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Take the shot.</h2>
+          <p class="text-lg text-slate-400">Join the test group. Whether you’re building the tech or providing the context, there is a place for you here.</p>
+        </div>
+
+        <div class="relative reveal d1">
+          <div class="absolute -inset-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 rounded-[28px] blur-lg opacity-30 animate-pulse" aria-hidden="true"></div>
+
+          <div class="relative p-7 md:p-10 rounded-3xl bg-[#0a0a0a] border border-white/10 shadow-2xl">
+
+            <!-- Success state -->
+            <div id="success" class="hidden text-center py-10" role="status" aria-live="polite">
+              <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-blue-500 rounded-full grid place-items-center mx-auto mb-6 shadow-[0_0_30px_rgba(236,72,153,0.35)]">
+                <i data-lucide="check-circle-2" class="w-10 h-10 text-white"></i>
+              </div>
+              <h3 class="font-display text-2xl font-bold mb-3">Welcome to Lumen.</h3>
+              <p class="text-slate-400 mb-8 text-lg">Your perspective matters. We’ll be in touch soon with your access details.</p>
+              <button id="again" type="button" class="text-sm font-bold uppercase tracking-wider text-pink-400 hover:text-pink-300">Submit another response</button>
+            </div>
+
+            <!-- Form -->
+            <form id="form" class="space-y-6" novalidate>
+              <fieldset>
+                <legend class="block text-sm font-bold uppercase tracking-wider text-slate-300 mb-4">I am joining as a:</legend>
+                <div class="grid grid-cols-2 gap-4">
+                  <label class="role-opt relative flex flex-col items-center justify-center p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 border-pink-500 bg-pink-500/10 shadow-[0_0_15px_rgba(236,72,153,0.2)]" data-role="Humanities Major">
+                    <input type="radio" name="role" value="Humanities Major" class="sr-only" checked />
+                    <i data-lucide="book-open" class="w-6 h-6 mb-2 text-pink-400"></i>
+                    <span class="text-sm font-bold text-white">Humanities</span>
+                  </label>
+                  <label class="role-opt relative flex flex-col items-center justify-center p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 border-white/10 bg-white/5 hover:border-white/30" data-role="Startup">
+                    <input type="radio" name="role" value="Startup" class="sr-only" />
+                    <i data-lucide="rocket" class="w-6 h-6 mb-2 text-slate-500"></i>
+                    <span class="text-sm font-bold text-slate-400">Startup</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="space-y-4 pt-4 border-t border-white/5">
+                <div>
+                  <label for="name" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Full name</label>
+                  <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jane Doe"
+                    class="w-full px-4 py-4 bg-black border border-white/10 rounded-xl focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 outline-none transition-all text-white placeholder-slate-700 font-medium" />
+                </div>
+                <div>
+                  <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Email address</label>
+                  <input id="email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com"
+                    class="w-full px-4 py-4 bg-black border border-white/10 rounded-xl focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 outline-none transition-all text-white placeholder-slate-700 font-medium" />
+                </div>
+                <div>
+                  <label id="interestLabel" for="fieldOfInterest" class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Field of study / interest</label>
+                  <input id="fieldOfInterest" name="fieldOfInterest" type="text" required placeholder="e.g. Sociology, Digital Humanities..."
+                    class="w-full px-4 py-4 bg-black border border-white/10 rounded-xl focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 outline-none transition-all text-white placeholder-slate-700 font-medium" />
+                </div>
+                <!-- Honeypot (bots fill this, humans never see it) -->
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+              </div>
+
+              <div id="error" class="hidden flex items-center gap-2 p-3 rounded-lg bg-red-500/10 text-red-400 text-sm font-medium border border-red-500/20" role="alert">
+                <i data-lucide="alert-circle" class="w-5 h-5 shrink-0"></i>
+                <span id="errorText">Something went wrong. Please try again.</span>
+              </div>
+
+              <button id="submit" type="submit"
+                class="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 text-white rounded-xl font-bold uppercase tracking-wider transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:shadow-[0_0_24px_rgba(219,39,119,0.45)]">
+                <span id="submitLabel">Request Access</span>
+                <i id="submitIcon" data-lucide="chevron-right" class="w-5 h-5"></i>
+                <span id="spinner" class="hidden w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-white/5 py-12 text-center bg-black/50">
+    <div class="flex justify-center mb-6">
+      <span class="relative w-9 h-9 rounded-full overflow-hidden grid place-items-center bg-gradient-to-br from-pink-500 to-blue-500 font-display font-bold text-sm opacity-60 hover:opacity-100 transition-opacity">
+        L
+        <img src="logo.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()" />
+      </span>
+    </div>
+    <p class="text-slate-500 text-sm font-medium uppercase tracking-widest">© <span id="year"></span> Lumen Protocol</p>
+    <p class="text-slate-600 text-xs mt-2">Built with intention by Nastayo Khalid.</p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    /* ================================================================
+       CONFIG — paste your form endpoint here.
+       Easiest: create a free form at https://formspree.io and paste the
+       URL, e.g. "https://formspree.io/f/abcdwxyz".
+       Leave empty and the form runs in demo mode (saves to the browser
+       only, nothing is sent anywhere).
+       ================================================================ */
+    const FORM_ENDPOINT = "";
+
+    // Icons
+    lucide.createIcons();
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Nav background on scroll
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      const scrolled = window.scrollY > 20;
+      nav.classList.toggle('bg-[#050505]/80', scrolled);
+      nav.classList.toggle('backdrop-blur-xl', scrolled);
+      nav.classList.toggle('border-b', scrolled);
+      nav.classList.toggle('border-white/5', scrolled);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // Cursor glow on cards
+    document.querySelectorAll('.card-glow').forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+
+    // Role toggle
+    const roleOpts = document.querySelectorAll('.role-opt');
+    const interestLabel = document.getElementById('interestLabel');
+    const interestInput = document.getElementById('fieldOfInterest');
+
+    const styles = {
+      'Humanities Major': {
+        on: ['border-pink-500', 'bg-pink-500/10', 'shadow-[0_0_15px_rgba(236,72,153,0.2)]'],
+        icon: 'text-pink-400',
+      },
+      'Startup': {
+        on: ['border-blue-500', 'bg-blue-500/10', 'shadow-[0_0_15px_rgba(59,130,246,0.2)]'],
+        icon: 'text-blue-400',
+      },
+    };
+    const allOn = [...styles['Humanities Major'].on, ...styles['Startup'].on];
+    const off = ['border-white/10', 'bg-white/5', 'hover:border-white/30'];
+
+    function applyRole(role) {
+      roleOpts.forEach((opt) => {
+        const active = opt.dataset.role === role;
+        opt.classList.remove(...allOn, ...off);
+        opt.classList.add(...(active ? styles[opt.dataset.role].on : off));
+        const icon = opt.querySelector('svg, i');
+        const text = opt.querySelector('span');
+        if (icon) {
+          icon.classList.remove('text-pink-400', 'text-blue-400', 'text-slate-500');
+          icon.classList.add(active ? styles[opt.dataset.role].icon : 'text-slate-500');
+        }
+        text.classList.toggle('text-white', active);
+        text.classList.toggle('text-slate-400', !active);
+      });
+      if (role === 'Startup') {
+        interestLabel.textContent = 'Startup industry / focus';
+        interestInput.placeholder = 'e.g. EdTech, AI, Health...';
+      } else {
+        interestLabel.textContent = 'Field of study / interest';
+        interestInput.placeholder = 'e.g. Sociology, Digital Humanities...';
+      }
+    }
+    document.querySelectorAll('input[name="role"]').forEach((r) =>
+      r.addEventListener('change', () => applyRole(r.value))
+    );
+
+    // Form submit
+    const form = document.getElementById('form');
+    const success = document.getElementById('success');
+    const errorBox = document.getElementById('error');
+    const errorText = document.getElementById('errorText');
+    const submitBtn = document.getElementById('submit');
+    const spinner = document.getElementById('spinner');
+    const submitLabel = document.getElementById('submitLabel');
+    const submitIcon = document.getElementById('submitIcon');
+
+    function setLoading(on) {
+      submitBtn.disabled = on;
+      spinner.classList.toggle('hidden', !on);
+      submitLabel.classList.toggle('hidden', on);
+      submitIcon.classList.toggle('hidden', on);
+    }
+    function showError(msg) {
+      errorText.textContent = msg;
+      errorBox.classList.remove('hidden');
+      errorBox.classList.add('flex');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox.classList.add('hidden');
+      errorBox.classList.remove('flex');
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      if (data._gotcha) return; // bot
+
+      if (!data.name.trim() || !data.fieldOfInterest.trim()) {
+        return showError('Please fill in every field.');
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        return showError('Please enter a valid email address.');
+      }
+
+      delete data._gotcha;
+      data.submittedAt = new Date().toISOString();
+      setLoading(true);
+
+      try {
+        if (FORM_ENDPOINT) {
+          const res = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          if (!res.ok) throw new Error('Request failed: ' + res.status);
+        } else {
+          console.warn('Lumen: FORM_ENDPOINT is empty. Running in demo mode; submission saved to this browser only.');
+          const list = JSON.parse(localStorage.getItem('lumen_waitlist') || '[]');
+          list.push(data);
+          localStorage.setItem('lumen_waitlist', JSON.stringify(list));
+          await new Promise((r) => setTimeout(r, 700));
+        }
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+        form.reset();
+        applyRole('Humanities Major');
+      } catch (err) {
+        console.error(err);
+        showError('Something went wrong. Please check your connection and try again.');
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    document.getElementById('again').addEventListener('click', () => {
+      success.classList.add('hidden');
+      form.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
